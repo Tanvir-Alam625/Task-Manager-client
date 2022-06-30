@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const AddedToDo = () => {
+const AddedToDo = ({ task }) => {
   const [check, setCheck] = useState(false);
   const handleChange = (event) => {
     setCheck(event.target.checked);
@@ -17,14 +17,14 @@ const AddedToDo = () => {
           />
           <span class="label-text ml-2">
             {check ? (
-              <del className="none">Make Responsive Website</del>
+              <del className="none">{task?.text}</del>
             ) : (
-              <>Make Responsive Website</>
+              <>{task?.text}</>
             )}
           </span>
         </label>
       </div>
-      <button className="hover:text-secondary">
+      <button disabled={check ? true : false} className="hover:text-secondary">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6"

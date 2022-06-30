@@ -6,16 +6,20 @@ import CompleteTask from "./components/CompleteTaks";
 import Calender from "./components/Calender";
 import NotFound from "./components/NotFound";
 import Footer from "./components/shared/Footer";
+import { QueryClientProvider, QueryClient } from "react-query";
 function App() {
+  const query = new QueryClient();
   return (
     <main className="max-w-[1100px] mx-auto text-white ">
       <Header />
-      <Routes>
-        <Route path="/" element={<ToDo />} />
-        <Route path="/completeTask" element={<CompleteTask />} />
-        <Route path="/calender" element={<Calender />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <QueryClientProvider client={query}>
+        <Routes>
+          <Route path="/" element={<ToDo />} />
+          <Route path="/completeTask" element={<CompleteTask />} />
+          <Route path="/calender" element={<Calender />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </QueryClientProvider>
       <Footer />
     </main>
   );
