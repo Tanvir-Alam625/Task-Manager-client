@@ -1,21 +1,22 @@
 import React, { useState } from "react";
 
-const AddedToDo = ({ task }) => {
+const AddedToDo = ({ task, spinner }) => {
   const [check, setCheck] = useState(false);
   const handleChange = (event) => {
     setCheck(event.target.checked);
   };
   return (
-    <div className=" w-full lg:min-w-[400px] text-white flex justify-between    border-b-2 border-secondary">
+    <div className=" w-full lg:min-w-[400px] text-white flex justify-between  mb-4  border-b-2 border-secondary">
       <div class="form-control ">
         <label class="cursor-pointer label">
           <input
             type="checkbox"
             name="addedTask"
+            disabled={spinner && true}
             onChange={handleChange}
             class="checkbox checkbox-secondary"
           />
-          <span class="label-text ml-2">
+          <span class="label-text ml-2 text-white">
             {check ? (
               <del className="none">{task?.text}</del>
             ) : (
@@ -24,7 +25,10 @@ const AddedToDo = ({ task }) => {
           </span>
         </label>
       </div>
-      <button disabled={check ? true : false} className="hover:text-secondary">
+      <button
+        disabled={check || spinner ? true : false}
+        className="hover:text-secondary"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6"
