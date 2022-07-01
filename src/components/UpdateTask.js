@@ -19,7 +19,7 @@ const UpdateTask = () => {
       return;
     }
     setInputError(false);
-    fetch(`http://localhost:5000/update/${id}`, {
+    fetch(`https://vast-mesa-60285.herokuapp.com/update/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

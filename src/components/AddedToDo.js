@@ -7,7 +7,7 @@ const AddedToDo = ({ task, spinner, refetch, setSpinner }) => {
   const handleChange = (event) => {
     setSpinner(true);
     const checkValue = event.target.checked;
-    fetch(`http://localhost:5000/task/${task._id}`, {
+    fetch(`https://vast-mesa-60285.herokuapp.com/task/${task._id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

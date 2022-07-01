@@ -22,7 +22,7 @@ const ToDo = () => {
       return;
     }
     setInputError(false);
-    fetch("http://localhost:5000/task", {
+    fetch("https://vast-mesa-60285.herokuapp.com/task", {
       method: "POST",
       headers: {
         "content-type": "application/json",
