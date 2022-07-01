@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import AddedToDo from "./AddedToDo";
-import { useQuery } from "react-query";
 import Spinner from "./shared/Spinner";
 import ErrorMessage from "./shared/ErrorMessage";
 import useTask from "./hooks/UseTask";
@@ -38,10 +37,11 @@ const ToDo = () => {
       });
     event.target.reset();
   };
-
+  // loading
   if (isLoading) {
     return <Spinner />;
   }
+  // error
   if (error) {
     return <h2 className="text-2xl text-center">{error.message}</h2>;
   }
