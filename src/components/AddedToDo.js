@@ -1,9 +1,23 @@
 import React, { useState } from "react";
 
-const AddedToDo = ({ task, spinner }) => {
-  const [check, setCheck] = useState(false);
+const AddedToDo = ({ task, spinner, refetch, setSpinner }) => {
+  const [check, setCheck] = useState(task.check);
   const handleChange = (event) => {
-    setCheck(event.target.checked);
+    setSpinner(true);
+    const checkValue = event.target.checked;
+    fetch(`http://localhost:5000/task/${task._id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ check: checkValue }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        refetch();
+        setCheck(checkValue);
+        setSpinner(false);
+      });
   };
   return (
     <div className=" w-full lg:min-w-[400px] text-white flex justify-between  mb-4  border-b-2 border-secondary">
@@ -12,7 +26,8 @@ const AddedToDo = ({ task, spinner }) => {
           <input
             type="checkbox"
             name="addedTask"
-            disabled={spinner && true}
+            checked={task.check ? "checked" : ""}
+            disabled={task.check && true}
             onChange={handleChange}
             class="checkbox checkbox-secondary"
           />
@@ -26,7 +41,7 @@ const AddedToDo = ({ task, spinner }) => {
         </label>
       </div>
       <button
-        disabled={check || spinner ? true : false}
+        disabled={task?.check || spinner ? true : false}
         className="hover:text-secondary"
       >
         <svg

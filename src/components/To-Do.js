@@ -6,14 +6,17 @@ import ErrorMessage from "./shared/ErrorMessage";
 const ToDo = () => {
   const [spinner, setSpinner] = useState(false);
   const [inputError, setInputError] = useState(false);
+  // get all task data
   const { data, isLoading, error, refetch } = useQuery("QueryTask", () =>
     fetch("http://localhost:5000/allTask").then((res) => res.json())
   );
-
+  const reverseData = data?.reverse();
+  // add a new task
   const handleSubmit = (event) => {
     event.preventDefault();
     setSpinner(true);
     const taskValue = event.target.task.value;
+    // validation
     if (taskValue.length < 10) {
       setInputError(true);
       setSpinner(false);
@@ -75,8 +78,14 @@ const ToDo = () => {
         </form>
       </div>
       <div className="flex justify-center items-center flex-col">
-        {data?.map((task) => (
-          <AddedToDo task={task} key={task._id} spinner={spinner} />
+        {reverseData?.map((task) => (
+          <AddedToDo
+            task={task}
+            key={task._id}
+            spinner={spinner}
+            refetch={refetch}
+            setSpinner={setSpinner}
+          />
         ))}
       </div>
     </div>
