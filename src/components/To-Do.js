@@ -3,13 +3,13 @@ import AddedToDo from "./AddedToDo";
 import { useQuery } from "react-query";
 import Spinner from "./shared/Spinner";
 import ErrorMessage from "./shared/ErrorMessage";
+import useTask from "./hooks/UseTask";
 const ToDo = () => {
   const [spinner, setSpinner] = useState(false);
   const [inputError, setInputError] = useState(false);
+  const [data, isLoading, error, refetch] = useTask();
   // get all task data
-  const { data, isLoading, error, refetch } = useQuery("QueryTask", () =>
-    fetch("http://localhost:5000/allTask").then((res) => res.json())
-  );
+
   const reverseData = data?.reverse();
   // add a new task
   const handleSubmit = (event) => {

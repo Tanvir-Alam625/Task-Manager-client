@@ -20,7 +20,7 @@ const AddedToDo = ({ task, spinner, refetch, setSpinner }) => {
       });
   };
   return (
-    <div className=" w-full lg:min-w-[400px] text-white flex justify-between  mb-4  border-b-2 border-secondary">
+    <div className=" w-full lg:max-w-[600px] text-white flex justify-between  mb-4  border-b-2 border-secondary">
       <div class="form-control ">
         <label class="cursor-pointer label">
           <input
