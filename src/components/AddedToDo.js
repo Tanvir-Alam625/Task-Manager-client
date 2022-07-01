@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddedToDo = ({ task, spinner, refetch, setSpinner }) => {
   const [check, setCheck] = useState(task.check);
+  const navigate = useNavigate();
   const handleChange = (event) => {
     setSpinner(true);
     const checkValue = event.target.checked;
@@ -43,6 +45,7 @@ const AddedToDo = ({ task, spinner, refetch, setSpinner }) => {
       <button
         disabled={task?.check || spinner ? true : false}
         className="hover:text-secondary"
+        onClick={() => navigate(`/update/${task._id}`)}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

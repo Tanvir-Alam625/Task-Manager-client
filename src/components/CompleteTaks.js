@@ -8,8 +8,6 @@ const CompleteTask = () => {
   const checkedData = data?.filter((task) => task?.check?.check === true);
   if (isLoading) {
     return <Spinner />;
-  } else {
-    console.log(data);
   }
 
   return (

@@ -40,7 +40,7 @@ const ToDo = () => {
   };
 
   if (isLoading) {
-    return <h2 className="text-center text-2xl">Loading data...</h2>;
+    return <Spinner />;
   }
   if (error) {
     return <h2 className="text-2xl text-center">{error.message}</h2>;

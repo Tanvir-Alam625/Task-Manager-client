@@ -7,6 +7,7 @@ import Calender from "./components/Calender";
 import NotFound from "./components/NotFound";
 import Footer from "./components/shared/Footer";
 import { QueryClientProvider, QueryClient } from "react-query";
+import UpdateTask from "./components/UpdateTask";
 function App() {
   const query = new QueryClient();
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<ToDo />} />
           <Route path="/completeTask" element={<CompleteTask />} />
           <Route path="/calender" element={<Calender />} />
+          <Route path="/update/:id" element={<UpdateTask />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </QueryClientProvider>
